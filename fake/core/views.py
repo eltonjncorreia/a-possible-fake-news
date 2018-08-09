@@ -10,6 +10,7 @@ from .models import Fake
 def home(request):
     if request.method == 'POST':
         busca = search(request)
+
         form = FakeModelForm(request.POST)
 
         if form.is_valid() and not counter(request):
@@ -47,3 +48,4 @@ def search(request):
             messages.success(request, 'Valor nao existe')
             url = lista_fakes()
         return url
+

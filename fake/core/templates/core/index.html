@@ -6,6 +6,7 @@
 </head>
 <body>
 <div>
+    <h1>Buscar por URL possivel fake news</h1>
     <form method="post" action="{% url 'core:home' %}">
         {% csrf_token %}
         <label>Busca:</label>
@@ -15,24 +16,31 @@
 </div>
 <br>
 
+<div>
+    <h1>Cadastrar uma possivel fake news</h1>
+    <form action="{% url 'core:home' %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button value="url">Cadastrar</button>
+    </form>
+    <br>
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
 
-<form action="{% url 'core:home' %}" method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button value="url">Enviar</button>
-</form>
+    {% endif %}
+</div>
 
-{% if messages %}
-    {% for message in messages %}
-        {{ message }}
-    {% endfor %}
-
-{% endif %}
 <br>
 
+<div>
+    <h1>Lista das fake news</h1>
+    {% for f in busca %}
+        {{ f.url }} <br>
+    {% endfor %}
+</div>
 
-{% for f in busca %}
-    {{ f.url }} <br>
-{% endfor %}
+
 </body>
 </html>
