@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake</title>
+</head>
+<body>
+<div>
+    <form method="post" action="{% url 'core:home' %}">
+        {% csrf_token %}
+        <label>Busca:</label>
+        <input type="url" name="url_buscada">
+        <button>Enviar</button>
+    </form>
+</div>
+<br>
+
+
+<form action="{% url 'core:home' %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button value="url">Enviar</button>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+
+{% endif %}
+<br>
+
+
+{% for f in busca %}
+    {{ f.url }} <br>
+{% endfor %}
+</body>
+</html>
